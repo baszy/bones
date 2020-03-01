@@ -1,0 +1,8 @@
+# Compiled binary files
+*.o
+*.a
+*.bin
+
+# Text editor turds
+*~
+*.swp
