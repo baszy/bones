@@ -1,5 +1,5 @@
 # Source files
-OBJECTS = src/io.o src/itoa.o src/kernel.o src/strlen.o src/vga.o src/boot.o
+OBJECTS = src/boot.o src/com.o src/io.o src/itoa.o src/kernel.o src/strlen.o src/vga.o
 
 CRTI = src/crti.o
 CRTN = src/crtn.o

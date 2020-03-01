@@ -1,7 +1,8 @@
 #pragma once
 
-#include "stdlib.h"
 #include <stdint.h>
+
+#include "stdlib.h"
 
 enum vga_color {
 	VGA_COLOR_BLACK = 0,
@@ -27,7 +28,6 @@ uint16_t * vga_target;
 
 static const size_t VGA_WIDTH = 80;
 static const size_t VGA_HEIGHT = 25;
-
 static uint16_t * const VGA_ADDRESS = (uint16_t *) 0xB8000;
 
 /* VGA Text buffer format
@@ -43,14 +43,14 @@ static inline uint16_t vga_toEntry(unsigned char character, uint8_t bg, uint8_t 
 	return (uint16_t) character | (uint16_t) color << 8;
 }
 
-void vga_putCharAt(uint16_t entry, uint32_t x, uint32_t y);
-
 void vga_clear(uint8_t color);
 
 void vga_initialize(void);
 
-void vga_seek(uint32_t x, uint32_t y);
+void vga_print(const char * data);
 
 void vga_putChar(uint16_t entry);
 
-void vga_print(const char * data);
+void vga_putCharAt(uint16_t entry, uint32_t x, uint32_t y);
+
+void vga_seek(uint32_t x, uint32_t y);
