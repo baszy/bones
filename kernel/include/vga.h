@@ -1,8 +1,10 @@
-#pragma once
+#ifndef _VGA_H
+#define _VGA_H
 
 #include <stdint.h>
+#include <stddef.h>
 
-#include "stdlib.h"
+#include "string.h"
 
 enum vga_color {
 	VGA_COLOR_BLACK = 0,
@@ -54,3 +56,5 @@ void vga_putChar(uint16_t entry);
 void vga_putCharAt(uint16_t entry, uint32_t x, uint32_t y);
 
 void vga_seek(uint32_t x, uint32_t y);
+
+#endif

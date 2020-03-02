@@ -9,12 +9,21 @@ A small kernel built for learning bare-metal programming.
 - Port I/O
 
 ## Building
-No custom toolchain is required yet, just use the Makefile by running `make`,
-but ensure the `BINDIR` and `TARGET` variables are set properly. Currently it
-should only build for the target `i686-elf`.
+Requirements:
+```
+nasm (any)
+```
+In order to build, you must also use a functioning cross-toolchain for i686-elf,
+built with `--with-sysroot`. The path to these binaries can be specified on the
+command line. By default, the program looks in `../cross/bin/`:
+```
+make BIN_DIR="/path/to/toolchain/bin"
+```
 
 ## Running
 Currently, the kernel only boots and runs on an emulator (although the kernel
-does have Multiboot 1 support so GRUB should be easy to set up). The compiled
-binary can be executed by running:
-```qemu-system-i386 --kernel bones.bin --serial stdio```
+does have Multiboot 1 support, and automatically builds a system root, so GRUB
+should be easy to set up). The compiled binary can be executed by running:
+```
+qemu-system-i386 --kernel ./root/boot/bones.bin --serial stdio
+```

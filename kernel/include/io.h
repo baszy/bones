@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _IO_H
+#define _IO_H
 
 #include <stdint.h>
 
@@ -8,3 +9,5 @@ extern uint32_t inl(uint16_t port);
 extern void outb(uint8_t value, uint16_t port);
 extern void outw(uint16_t value, uint16_t port);
 extern void outl(uint32_t value, uint16_t port);
+
+#endif

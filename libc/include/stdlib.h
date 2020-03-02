@@ -1,10 +1,18 @@
-#pragma once
+#ifndef _STDLIB_H
+#define _STDLIB_H
 
-#include <stddef.h>
 #include <stdint.h>
 
 #define abs(x) ((x) < 0 ? -(x) : (x))
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 char * itoa(uint32_t value, char * str, uint32_t base);
 
-size_t strlen(const char * string);
+#ifdef __cplusplus
+}
+#endif
+
+#endif

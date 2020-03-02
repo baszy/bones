@@ -1,45 +1,33 @@
-# Source files
-OBJECTS = src/boot.o src/com.o src/io.o src/itoa.o src/kernel.o src/strlen.o src/vga.o
+# Top level Makefile
 
-CRTI = src/crti.o
-CRTN = src/crtn.o
+export ROOT_DIR := $(CURDIR)/root/
 
-# Target executable
-BINARY = kernel.bin
-TARGET = i686-elf
+export BOOT_DIR := /boot/
+export INCLUDE_DIR := /usr/include/
+export LIBRARY_DIR := /usr/lib/
 
-BINDIR = ../cross/bin/
-CC := $(BINDIR)/$(TARGET)-gcc
-AS := nasm
-LD := $(CC)
+export TARGET = i686-elf
 
-# Linker script
-LINKLD = link.ld
+BIN_DIR ?= $(CURDIR)/../cross/bin/
+export AR := $(BIN_DIR)/$(TARGET)-ar
+export AS := nasm # $(BIN_DIR)/$(TARGET)-as
+export CC := $(BIN_DIR)/$(TARGET)-gcc --sysroot=$(ROOT_DIR) -isystem=$(INCLUDE_DIR)
+export LD := $(CC)
 
-CFLAGS = -Iinclude/ -g -ffreestanding -Wall -Wextra -fno-exceptions
-ASFLAGS = -felf32 -w+orphan-labels
-LDFLAGS = -g -ffreestanding -nostdlib -lgcc
+export CFLAGS ?= -g -ffreestanding -Wall -Wextra -fno-exceptions
+export ASFLAGS ?= -felf32 -w+orphan-labels
+export LDFLAGS ?= -g -ffreestanding -nostdlib
 
-# Autogenerate object files
-CRTBEGIN := $(shell $(CC) $(CFLAGS) -print-file-name=crtbegin.o)
-CRTEND := $(shell $(CC) $(CFLAGS) -print-file-name=crtend.o)
+.PHONY: all clean install
 
-.PHONY: all clean
-
-.SUFFIXES:
-.SUFFIXES: .c .o 
-.SUFFIXES: .asm .o
-
-all: $(BINARY)
-
-.c.o:
-	$(CC) -c $< -o $@ $(CFLAGS)
-
-.asm.o:
-	$(AS) $< -o $@ $(ASFLAGS)
-
-$(BINARY): $(CRTI) $(CRTBEGIN) $(OBJECTS) $(CRTEND) $(CRTN)
-	$(LD) -T $(LINKLD) -o $(BINARY) $(CRTI) $(CRTBEGIN) $(OBJECTS) $(CRTEND) $(CRTN) $(LDFLAGS)
+all:
+	$(MAKE) -C libc/ all
+	$(MAKE) -C libc/ install
+	$(MAKE) -C kernel/ all
+	$(MAKE) -C kernel/ install
 
 clean:
-	rm $(BINARY) $(CRTI) $(CRTN) $(OBJECTS) -rf
+	$(MAKE) -C libc/ clean
+	$(MAKE) -C kernel/ clean
+
+install: all

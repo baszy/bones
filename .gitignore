@@ -3,6 +3,9 @@
 *.a
 *.bin
 
+# Ignore sysroot built by the Makefiles
+root/
+
 # Text editor turds
 *~
 *.swp
