@@ -1,10 +1,10 @@
 #include "vga.h"
 
 void vga_clear(uint8_t color) {
-	uint16_t entry = vga_toEntry(0, color, color);
+	uint16_t entry = vga_to_entry(0, color, color);
 	for (uint32_t x = 0; x < VGA_WIDTH; x++) {
 		for (uint32_t y = 0; y < VGA_HEIGHT; y++) {
-			vga_putCharAt(entry, x, y);
+			vga_put_char_at(entry, x, y);
 		}
 	}
 }
@@ -24,12 +24,12 @@ void vga_seek(uint32_t x, uint32_t y) {
 
 void vga_print(const char * data) {
 	for (uint32_t i = 0; i < strlen(data); i++) {
-		uint16_t entry = vga_toEntry(data[i], VGA_COLOR_BLACK, VGA_COLOR_LIGHT_GREY);
-		vga_putChar(entry);
+		uint16_t entry = vga_to_entry(data[i], VGA_COLOR_BLACK, VGA_COLOR_LIGHT_GREY);
+		vga_put_char(entry);
 	}
 }
 
-void vga_putChar(uint16_t entry) {
+void vga_put_char(uint16_t entry) {
 	// Scroll / clear the terminal.
 	if (vga_row == VGA_HEIGHT) {
 		for (uint32_t x = 0; x < VGA_WIDTH; x++) {
@@ -63,7 +63,7 @@ void vga_putChar(uint16_t entry) {
 	}
 
 	default: {
-		vga_putCharAt(entry, vga_column, vga_row);
+		vga_put_char_at(entry, vga_column, vga_row);
 
 		vga_column++;
 		if (vga_column == VGA_WIDTH) {
@@ -77,7 +77,7 @@ void vga_putChar(uint16_t entry) {
 	}
 }
 
-void vga_putCharAt(uint16_t entry, uint32_t x, uint32_t y) {
+void vga_put_char_at(uint16_t entry, uint32_t x, uint32_t y) {
 	uint32_t index = x + (y * VGA_WIDTH);
 	vga_target[index] = entry;
 }

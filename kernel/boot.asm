@@ -41,6 +41,10 @@ _start:
 
 	; out dx, 0x3f8
 
+    ; Destructor
+    extern _fini
+    call _fini
+
 	; At this point, the program is finished, we will disable interrupts
 	; and hang
 	cli

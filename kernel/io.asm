@@ -1,7 +1,7 @@
 section .text
 
-; TODO: This assembly is not inlinable, and the function prologue and epilogue
-; are probably unnecessary because these are "leaf" functions
+; TODO: Not inlinable
+; TODO: Function prologue and epilogue are unnecessary for leaf functions
 
 global inb:function
 inb:

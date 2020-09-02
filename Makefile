@@ -8,7 +8,7 @@ export LIBRARY_DIR := /usr/lib/
 
 export TARGET = i686-elf
 
-BIN_DIR ?= $(CURDIR)/../cross/bin/
+BIN_DIR ?= $(CURDIR)/../../program/cross/bin/
 export AR := $(BIN_DIR)/$(TARGET)-ar
 export AS := nasm # $(BIN_DIR)/$(TARGET)-as
 export CC := $(BIN_DIR)/$(TARGET)-gcc --sysroot=$(ROOT_DIR) -isystem=$(INCLUDE_DIR)

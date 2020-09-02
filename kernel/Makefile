@@ -1,7 +1,7 @@
 # Makefile for bones kernel
 
 # Sources and target executable
-OBJECTS = boot.o console/com.o console/vga.o io.o kernel.o
+OBJECTS = boot.o console/com.o video/vga.o io.o kernel.o
 BINARY = bones-$(TARGET).bin
 
 CRTI = crti.o
@@ -31,11 +31,11 @@ all: $(BINARY)
 .asm.o:
 	$(AS) $< -o $@ $(ASFLAGS)
 
-$(BINARY): $(CRTI) $(CRTBEGIN) $(OBJECTS) $(CRTEND) $(CRTN)
+$(BINARY): $(CRTI) $(CRTBEGIN) $(OBJECTS) $(CRTEND) $(CRTN) 
 	$(LD) -T $(LINKLD) -o $@ $^ $(LDFLAGS)
 
 clean:
-	rm $(BINARY) $(CRTI) $(CRTN) $(OBJECTS) -rf
+	rm $(BINARY) $(OBJECTS) $(CRTI) $(CRTN) -rf
 
 install: install-headers install-kernel
 

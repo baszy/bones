@@ -1,11 +1,11 @@
 #include "com.h"
 
-char com_getChar(uint16_t port) {
+char com_get_char(uint16_t port) {
 	while ((inb(port + 5) & 1) == 0);
 	return inb(port);
 }
 
-void com_initialize(uint16_t port) {
+void com_start_port(uint16_t port) {
 	// Disable all interrupts
 	outb(0x00, port + 1);
 	// Divisor setup DLAB
@@ -20,11 +20,11 @@ void com_initialize(uint16_t port) {
 
 void com_print(uint16_t port, const char * data) {
 	for (size_t i = 0; i < strlen(data); i++) {
-		com_putChar(port, data[i]);
+		com_put_char(port, data[i]);
 	}
 }
 
-void com_putChar(uint16_t port, char data) {
+void com_put_char(uint16_t port, char data) {
 	while ((inb(port + 5) & 0x20) == 0);
 	outb(data, port);
 }

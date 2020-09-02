@@ -40,7 +40,7 @@ static uint16_t * const VGA_ADDRESS = (uint16_t *) 0xB8000;
  * bit 15 blink or bg color bit 3 on some hardware
  */
 
-static inline uint16_t vga_toEntry(unsigned char character, uint8_t bg, uint8_t fg) {
+static inline uint16_t vga_to_entry(unsigned char character, uint8_t bg, uint8_t fg) {
 	uint8_t color = bg << 4 | fg;
 	return (uint16_t) character | (uint16_t) color << 8;
 }
@@ -51,9 +51,9 @@ void vga_initialize(void);
 
 void vga_print(const char * data);
 
-void vga_putChar(uint16_t entry);
+void vga_put_char(uint16_t entry);
 
-void vga_putCharAt(uint16_t entry, uint32_t x, uint32_t y);
+void vga_put_char_at(uint16_t entry, uint32_t x, uint32_t y);
 
 void vga_seek(uint32_t x, uint32_t y);
 
