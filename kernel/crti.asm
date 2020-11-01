@@ -3,13 +3,13 @@ section .init
 
 global _init:function
 _init:
-	push ebp
-	mov ebp, esp
+    push ebp
+    mov ebp, esp
 
 ; crtbegin.o .fini
 section .fini
 
 global _fini:function
 _fini:
-	push ebp
-	mov ebp, esp
+    push ebp
+    mov ebp, esp

@@ -12,9 +12,9 @@ CHECKSUM equ -(MAGIC + FLAGS)
 section .multiboot
 
 align 4
-	dd MAGIC
-	dd FLAGS
-	dd CHECKSUM
+    dd MAGIC
+    dd FLAGS
+    dd CHECKSUM
 
 section .bss
 
@@ -28,33 +28,33 @@ section .text
 
 global _start:function (_start.end - _start)
 _start:
-	; Setting up the stack (put the stack pointer at the top of the stack)
-	mov esp, stack_top
+    ; Setting up the stack (put the stack pointer at the top of the stack)
+    mov esp, stack_top
 
-	; Call global constructors
-	extern _init
-	call _init
+    ; Call global constructors
+    extern _init
+    call _init
 
-	; Call the next level of the kernel
-	extern start_kernel
-	call start_kernel
+    ; Call the next level of the kernel
+    extern start_kernel
+    call start_kernel
 
-	; out dx, 0x3f8
+    ; out dx, 0x3f8
 
     ; Destructor
     extern _fini
     call _fini
 
-	; At this point, the program is finished, we will disable interrupts
-	; and hang
-	cli
+    ; At this point, the program is finished, we will disable interrupts
+    ; and hang
+    cli
 
 .hang:
-	; Halt until next interrupt, but interrupts are disabled, so only
-	; non-maskable interrupts will continue execution
-	hlt
+    ; Halt until next interrupt, but interrupts are disabled, so only
+    ; non-maskable interrupts will continue execution
+    hlt
 
-	; Jump back in case of NMI
-	jmp .hang
+    ; Jump back in case of NMI
+    jmp .hang
 
 .end:

@@ -3,16 +3,25 @@
 
 #include <stddef.h>
 #include <stdint.h>
+#include <stdbool.h>
 
 #include "io.h"
 #include "string.h"
 
-char com_get_char(uint16_t port);
+typedef uint16_t com_port;
 
-void com_start_port(uint16_t port);
+char com_get_char(com_port port);
 
-void com_print(uint16_t port, const char * data);
+com_port com_get_port_bda(int index);
 
-void com_put_char(uint16_t port, char data);
+void com_initialize(com_port port);
+
+void com_print(com_port port, const char * data);
+
+void com_put_char(com_port port, char data);
+
+void com_start_port(com_port port);
+
+bool com_valid_port(com_port port);
 
 #endif

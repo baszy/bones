@@ -5,69 +5,69 @@ section .text
 
 global inb:function
 inb:
-	push ebp
-	mov ebp, esp
+    push ebp
+    mov ebp, esp
 
-	mov dx, [ebp + 8]
-	in al, dx
+    mov dx, [ebp + 8]
+    in al, dx
 
-	leave
-	ret
+    leave
+    ret
 
 global inw:function
 inw:
-	push ebp
-	mov ebp, esp
+    push ebp
+    mov ebp, esp
 
-	mov dx, [ebp + 8]
-	in ax, dx
+    mov dx, [ebp + 8]
+    in ax, dx
 
-	leave
-	ret
+    leave
+    ret
 
 global inl:function
 inl:
-	push ebp,
-	mov ebp, esp
+    push ebp,
+    mov ebp, esp
 
-	mov dx, [ebp + 8]
-	in eax, dx
+    mov dx, [ebp + 8]
+    in eax, dx
 
-	leave
-	ret
+    leave
+    ret
 
 global outb:function
 outb:
-	push ebp
-	mov ebp, esp
+    push ebp
+    mov ebp, esp
 
-	mov al, [ebp + 8]
-	mov dx, [ebp + 12]
-	out dx, al
+    mov dx, [ebp + 8]
+    mov al, [ebp + 12]
+    out dx, al
 
-	leave
-	ret
+    leave
+    ret
 
 global outw:function
 outw:
-	push ebp
-	mov ebp, esp
+    push ebp
+    mov ebp, esp
 
-	mov ax, [ebp + 8]
-	mov dx, [ebp + 12]
-	out dx, ax
+    mov dx, [ebp + 8]
+    mov ax, [ebp + 12]
+    out dx, ax
 
-	leave
-	ret
+    leave
+    ret
 
 global outl:function
 outl:
-	push ebp
-	mov ebp, esp
+    push ebp
+    mov ebp, esp
 
-	mov eax, [esp + 8]
-	mov dx, [esp + 12]
-	out dx, eax
+    mov dx, [esp + 8]
+    mov eax, [esp + 12]
+    out dx, eax
 
-	leave
-	ret
+    leave
+    ret
