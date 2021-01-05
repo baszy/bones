@@ -5,6 +5,7 @@ OBJECTS = stdlib/itoa.o string/strlen.o
 BINARY = libk.a
 
 CFLAGS += -Iinclude/
+ASFLAGS += -felf32
 
 .PHONY: all clean install install-headers install-libraries
 

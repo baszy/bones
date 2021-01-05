@@ -1,13 +1,14 @@
 # Makefile for bones kernel
 
 # Sources and target executable
-OBJECTS = boot.o console/com.o video/vga.o io.o kernel.o
+OBJECTS = multiboot.o console/com.o video/vga.o io.o kernel.o
 BINARY = bones-$(TARGET).bin
 
 CRTI = crti.o
 CRTN = crtn.o
 
 CFLAGS += -Iinclude/
+ASFLAGS += -felf32
 LDFLAGS += -lk -lgcc
 
 # Linker script
@@ -31,7 +32,7 @@ all: $(BINARY)
 .asm.o:
 	$(AS) $< -o $@ $(ASFLAGS)
 
-$(BINARY): $(CRTI) $(CRTBEGIN) $(OBJECTS) $(CRTEND) $(CRTN) 
+$(BINARY): $(CRTI) $(CRTBEGIN) $(OBJECTS) $(CRTEND) $(CRTN)
 	$(LD) -T $(LINKLD) -o $@ $^ $(LDFLAGS)
 
 clean:

@@ -1,13 +1,12 @@
 /* The bootloader will start execution at this entry point */
 ENTRY(_start)
-
-OUTPUT(kernel.bin)
  
 /* Defining sections of the os image */ 
 SECTIONS {
 
-    /* Start at 1 MiB, the usual place for kernels to be loaded by the bootloader. */
-    . = 1M;
+    /* Start at 0x10000 */
+    /* TODO: This should be loaded at 1MiB like normal people do */
+    . = 64K;
 
     /* First put the multiboot header so the bootloader can recognize the file */
     .text BLOCK(4K) : ALIGN(4K)
@@ -37,5 +36,5 @@ SECTIONS {
         *(.bss)
     }
 
-    /* Compiler may produce other sections and put them in a section with the same name.*/
+    /* Compiler may produce other sections and append them */
 }

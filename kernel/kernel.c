@@ -6,7 +6,7 @@ void start_kernel(void) {
     vga_initialize();
     vga_clear(VGA_COLOR_WHITE);
 
-    vga_print("VGA text mode test");
+    vga_print("VGA text mode test\n");
 
     for (uint8_t fg = 0; fg < 16; fg++) {
         for (uint8_t bg = 0; bg < 16; bg++) {

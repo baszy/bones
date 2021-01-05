@@ -21,7 +21,7 @@ section .bss
 ; Defining the stack: 16Kb growing downwards
 align 16
 stack_bottom:
-resb 16384
+    resb 16384
 stack_top:
 
 section .text
