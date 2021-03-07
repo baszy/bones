@@ -1,7 +1,7 @@
 # Makefile for libc and libk
 
 # Sources and target executable
-OBJECTS = stdlib/itoa.o string/strlen.o
+OBJECTS = src/stdlib.o src/string.o
 BINARY = libk.a
 
 CFLAGS += -Iinclude/

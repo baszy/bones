@@ -1,7 +1,7 @@
 # Makefile for bones kernel
 
 # Sources and target executable
-OBJECTS = multiboot.o console/com.o video/vga.o io.o kernel.o
+OBJECTS = multiboot.o console/com.o video/vga.o gdt.o io.o kernel.o
 BINARY = bones-$(TARGET).bin
 
 CRTI = crti.o

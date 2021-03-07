@@ -70,6 +70,9 @@ start:
     mov si, welcome_msg
     call bios_print
 
+    xor ah, ah
+    int 0x16
+
     ; Check if int 0x13 extensions are supported
     clc
     mov ah, 0x41

@@ -7,6 +7,8 @@
 extern "C" {
 #endif
 
+char * strcpy(char * destination, const char * source);
+
 size_t strlen(const char * string);
 
 #ifdef __cplusplus

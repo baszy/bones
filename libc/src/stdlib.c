@@ -1,7 +1,7 @@
 #include "stdlib.h"
 
 // TODO: bad
-char * itoa(uint32_t value, char * str, uint32_t base) {
+char * itoa(uint64_t value, char * str, uint32_t base) {
 	if (base < 2 || base > 36) {
 		*str = '\0';
 		return str;

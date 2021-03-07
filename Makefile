@@ -3,11 +3,11 @@
 export ROOT_DIR := $(CURDIR)/root/
 
 export BOOT_DIR := /boot/
-export INCLUDE_DIR := /usr/include/
-export LIBRARY_DIR := /usr/lib/
+export INCLUDE_DIR := /include/
+export LIBRARY_DIR := /lib/
 
 export TARGET = i686-elf
-export IMAGE_FILE = bones-$(TARGET).bin
+export IMAGE_FILE = bones-$(TARGET).img
 
 BIN_DIR ?= $(CURDIR)/../../program/cross/bin/
 export AR := $(BIN_DIR)/$(TARGET)-ar
@@ -15,7 +15,7 @@ export AS := nasm # $(BIN_DIR)/$(TARGET)-as
 export CC := $(BIN_DIR)/$(TARGET)-gcc --sysroot=$(ROOT_DIR) -isystem=$(INCLUDE_DIR)
 export LD := $(CC)
 
-export CFLAGS ?= -g -ffreestanding -Wall -Wextra -fno-exceptions
+export CFLAGS ?= -g -O2 -ffreestanding -Wall -Wextra -fno-exceptions
 export ASFLAGS ?= -w+orphan-labels -w-zeroing
 export LDFLAGS ?= -g -ffreestanding -nostdlib
 

@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 
-char * itoa(uint32_t value, char * str, uint32_t base);
+char * itoa(uint64_t value, char * str, uint32_t base);
 
 #ifdef __cplusplus
 }

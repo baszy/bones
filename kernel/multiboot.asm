@@ -39,8 +39,6 @@ _start:
     extern start_kernel
     call start_kernel
 
-    ; out dx, 0x3f8
-
     ; Destructor
     extern _fini
     call _fini
